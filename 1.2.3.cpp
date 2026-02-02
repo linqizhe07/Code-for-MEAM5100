@@ -9,23 +9,18 @@ int main(void)
     set(DDRB, LED_BIT);       // PB5 as output
 
     // ---- Duty cycle control (0 to 100) ----
-    uint8_t duty_percent = 50;
+    //uint8_t duty_percent = 50;
 
     // Total PWM period in milliseconds (scope will show ~1/PERIOD frequency)
     const uint16_t PERIOD_MS = 20;   // 20 ms => 50 Hz
 
     while (1) {
-
-        // Normal case: 1~99% duty cycle
-        // Compute ON/OFF time within one PWM period
-        uint16_t on_ms  = (uint16_t)((PERIOD_MS * duty_percent) / 100);
-        uint16_t off_ms = PERIOD_MS - on_ms;
-
-        // Output PWM waveform
+        // On
         set(PORTB, LED_BIT);
-        _delay_ms(on_ms);
+        _delay_ms(200);
 
+        //Off
         clear(PORTB, LED_BIT);
-        _delay_ms(off_ms);
+        _delay_ms(200);
     }
 }
