@@ -1,6 +1,6 @@
 #include "MEAM_general.h"
 
-// Hardware Constants
+//Constants
 #define TIMER_TOP 312   // F_CPU/256/200Hz - 1
 
 /**
@@ -9,31 +9,25 @@
  * @param end_intensity: Ending brightness percentage (0-100)
  * @param duration_ms: Total time for the transition in milliseconds
  */
-/**
- * Subroutine to create smooth LED intensity transitions.
- * Calculates linear interpolation between intensity levels over a set duration.
- * * @param start_p: Initial intensity percentage (0-100)
- * @param end_p: Target intensity percentage (0-100)
- * @param duration_ms: Total time for the transition in milliseconds
- */
+
 void pulse_led(int start_p, int end_p, int duration_ms) {
     int steps = 50;                             // Number of discrete steps for the transition
     int delay_per_step = duration_ms / steps;   // Duration to hold each intensity level
     
     for (int i = 0; i <= steps; i++) {
         /* Linear Interpolation Logic: Current = Start + (Progress * Total_Delta) 
-           Note: Using int32_t to prevent overflow during intermediate multiplication. */
-        int32_t current_p = start_p + ((int32_t)i * (end_p - start_p) / steps);
+
+        int16_t current_p = start_p + ((int16_t)i * (end_p - start_p) / steps);
         
-        /* Hardware Mapping: Translate 0-100% intensity to 0-312 Timer1 counts.
+        /* Translate 0-100% intensity to 0-312 Timer1 counts.
            OCR1A determines the "Off-point" (Integration Upper Limit) within the PWM cycle. */
         OCR1A = (uint16_t)(current_p * 312 / 100); 
         
-        /* Variable Delay Implementation:
-           Standard _delay_ms() requires a compile-time constant. 
-           Nested loop allows for variable timing by accumulating 1ms increments. */
+        /* Note:Standard _delay_ms() requires a compile-time constant. 
+           subloop allows for variable timing by accumulating 1ms increments. 
+        */
         for (int d = 0; d < delay_per_step; d++) {
-            _delay_ms(1); 
+            _delay_ms(1); /I wrote _delay_ms(delay_per_step) only to find error.
         }
     }
 }
