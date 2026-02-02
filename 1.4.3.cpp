@@ -41,7 +41,7 @@ int main(void) {
     ICR1 = TIMER_TOP;
 
 
-    for ( int beat = 0; beat < 21; beat++) {
+    for ( int beat = 0; beat < 20; beat++) {
         // Linear decay: 100, 95, 90 ... down to 5
         int current_max = 100 - beat * 5;
 
