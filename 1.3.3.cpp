@@ -1,7 +1,5 @@
 #include "MEAM_general.h"
 
-// ---- Pin Definitions ----
-#define LED_BIT 5   // PB5 (OC1A)
 
 int main(void)
 {
@@ -9,7 +7,7 @@ int main(void)
     _clockdivide(0);          
     
     // Configure PB5 as output
-    DDRB |= (1 << LED_BIT);
+    Dset(DDRB, 5);
 
     /* Configure Waveform Generation Mode (WGM)
        Mode 14: WGM13:11 = 1, WGM10 = 0 
