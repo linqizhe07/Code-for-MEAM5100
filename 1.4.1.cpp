@@ -6,8 +6,10 @@
 int main(void)
 {
     // Disable clock prescaler to run at full system frequency (16MHz)
-    _clockdivide(0);          
-       
+    _clockdivide(0);   
+    
+    // Configure PB5 as output
+    DDRB |= (1 << LED_BIT);
 
     /* Configure Waveform Generation Mode (WGM)
        Mode 14: Up to ICR1, PWM Mode
