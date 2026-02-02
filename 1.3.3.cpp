@@ -8,20 +8,17 @@ int main(void)
     // Disable clock prescaler to run at full system frequency (typically 16MHz)
     _clockdivide(0);          
     
-    // Configure PB5 as output; required for PWM signal to reach the physical pin
-    set(DDRB, LED_BIT);       
+    // Configure PB5 as output
 
     /* Configure Waveform Generation Mode (WGM)
-       Mode 14: Fast PWM, TOP defined by ICR1
-       WGM13:11 = 1, WGM10 = 0 
+       Mode 14: WGM13:11 = 1, WGM10 = 0 
     */
     TCCR1A = (1 << WGM11);
     TCCR1B = (1 << WGM13) | (1 << WGM12);
 
     /*
        Configure Compare Output Mode for Channel A
-       COM1A1 = 1: Non-inverting PWM
-       Output High when TCNT1 < OCR1A, Output Low when TCNT1 >= OCR1A
+       COM1A1 = 1: Clear at OCR1A, set at rollover
     */
     TCCR1A |= (1 << COM1A1);
 
