@@ -9,6 +9,7 @@ int main(void)
     _clockdivide(0);          
     
     // Configure PB5 as output
+    DDRB |= (1 << LED_BIT);
 
     /* Configure Waveform Generation Mode (WGM)
        Mode 14: WGM13:11 = 1, WGM10 = 0 
