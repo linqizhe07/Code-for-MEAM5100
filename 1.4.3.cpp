@@ -29,3 +29,34 @@ void pulse_led(int start_p, int end_p, int duration_ms) {
         }
     }
 }
+
+
+int main(void) {
+    _clockdivide(0);
+    set(DDRB, 5); // Output on PB5
+
+    // Timer 1: Mode 14 (Fast PWM), Prescaler 256, Non-inverting
+    TCCR1A = (1 << COM1A1) | (1 << WGM11);
+    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS12);
+    ICR1 = TIMER_TOP;
+
+
+    for ( int beat = 0; beat < 21; beat++) {
+        // Linear decay: 100, 95, 90 ... down to 5
+        int current_max = 100 - beat * 5;
+
+        // Large Intensity: Peak at current_max
+        pulse_led(0, current_max, 100);
+        pulse_led(current_max, 0, 400);
+        
+        // Small Intensity: Peak at 50% of current_max
+        int current_smaller = current_max / 2;
+        pulse_led(0, current_smaller, 100);
+        pulse_led(current_smaller, 0, 400);
+
+        // REST: 0 brightness for 2.0s
+        OCR1A = 0;
+        _delay_ms(2000); 
+
+    }
+}
