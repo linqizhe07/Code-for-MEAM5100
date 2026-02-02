@@ -8,10 +8,6 @@ int main(void)
     _clockdivide(0);          // 16 MHz
     set(DDRB, LED_BIT);       // PB5 as output
 
-    // ---- Duty cycle control (0 to 100) ----
-    //uint8_t duty_percent = 50;
-
-    // Total PWM period in milliseconds (scope will show ~1/PERIOD frequency)
     const uint16_t PERIOD_MS = 20;   // 20 ms => 50 Hz
 
     while (1) {
