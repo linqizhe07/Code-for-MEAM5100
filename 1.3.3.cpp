@@ -7,7 +7,7 @@ int main(void)
     _clockdivide(0);          
     
     // Configure PB5 as output
-    Dset(DDRB, 5);
+    set(DDRB, 5);
 
     /* Configure Waveform Generation Mode (WGM)
        Mode 14: WGM13:11 = 1, WGM10 = 0 
