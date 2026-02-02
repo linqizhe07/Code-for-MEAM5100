@@ -41,4 +41,5 @@ int main(void)
        Corrected value: 3471 / 2 = 1735
     */
     OCR1A = 1735; 
+    while(1);
 }
