@@ -17,14 +17,15 @@ int main(void)
     TCNT1 = 62064;
 
     while (1) {
-        //
+        //Check if the timer has reached its overflow value
         if (TIFR1 & (1 << TOV1)){
 
-            PORTB ^= (1<< LED_BIT); //switch off PORTB
+            PORTB ^= (1<< LED_BIT); //Switch off PORTB
 
             TCNT1 = 62064;          //Reset the value
 
-            TIFR1 |= (1 << TOV1);   //
+            TIFR1 |= (1 << TOV1);   //Reset the overflow flag
+                                    // Note: In AVR, writing 1 to a flag bit clears it
         }
     }
 }
