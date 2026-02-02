@@ -15,7 +15,7 @@ int main(void)
         set(PORTB, LED_BIT);
         _delay_ms(200);
 
-        //Off
+        // Off
         clear(PORTB, LED_BIT);
         _delay_ms(200);
     }
