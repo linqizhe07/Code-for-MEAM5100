@@ -1,3 +1,4 @@
+//Author: Linqi Zhe
 #include "MEAM_general.h"
 
 // ---- Pin selection ----
