@@ -28,7 +28,7 @@ void pulse_led(int start_p, int end_p, int duration_ms) {
            subloop allows for variable timing by accumulating 1ms increments. 
         */
         for (int d = 0; d < delay_per_step; d++) {
-            _delay_ms(1); /I wrote _delay_ms(delay_per_step) only to find error.
+            _delay_ms(1); //I wrote _delay_ms(delay_per_step) only to find error.
         }
     }
 }
