@@ -10,8 +10,8 @@ int main(void)
 {
     _clockdivide(0); //set the clock speed to 16Mhz
 
-    DDRC &= ~(1 << PC7);   // PC7 input
-    PORTC &= ~(1 << PC7);  // no pull-up (external pull-down)
+    DDRC &= ~(1 << PC7);   // PC7 as input
+    PORTC &= ~(1 << PC7);  // No pull-up 
     DDRB |= (1 << PB6);   // Output
 
     while(1)
@@ -25,5 +25,6 @@ int main(void)
     }
     return 0;  
 }
+
 
 
