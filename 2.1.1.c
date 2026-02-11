@@ -9,8 +9,6 @@
 int main(void)
 {
     _clockdivide(0); //set the clock speed to 16Mhz
-    set_led(ON);			// turn on the on board LED
-    _delay_ms(1000);		// wait 1000 ms when at 16 MHz
 
     DDRC &= ~(1 << PC7);   // PC7 input
     PORTC &= ~(1 << PC7);  // no pull-up (external pull-down)
@@ -27,4 +25,5 @@ int main(void)
     }
     return 0;  
 }
+
 
