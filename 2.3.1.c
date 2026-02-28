@@ -1,3 +1,4 @@
+#include "MEAM_general.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdint.h>
@@ -26,7 +27,7 @@ static volatile uint8_t  g_newPulse   = 0;
 /*
  * External Interrupt INT0 (PD0):
  * Each rising edge indicates a new period measurement.
- * We read Timer3, optionally reject very short intervals as noise, then reset Timer3.
+ * Read Timer3, optionally reject very short intervals as noise, then reset Timer3.
  */
 ISR(INT0_vect)
 {
