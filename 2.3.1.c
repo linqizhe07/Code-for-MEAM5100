@@ -3,6 +3,10 @@
 #include <avr/interrupt.h>
 #include <stdint.h>
 
+#define TICKS_22HZ_MIN   10000
+#define TICKS_22HZ_MAX   13000
+#define TICKS_770HZ_MIN  280
+#define TICKS_770HZ_MAX  380
 /*
  * Timer3 timing notes:
  * - CPU clock: 16 MHz
@@ -14,10 +18,6 @@
  *
  * The ranges below allow some tolerance for jitter.
  */
-#define TICKS_22HZ_MIN   10000
-#define TICKS_22HZ_MAX   13000
-#define TICKS_770HZ_MIN  280
-#define TICKS_770HZ_MAX  380
 
 #define GLITCH_TICKS_MIN 150     // reject intervals < 150 ticks (~0.6 ms) as bounce/noise
 
